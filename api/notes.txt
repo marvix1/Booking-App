@@ -1,7 +1,0 @@
-we need to send jwt in order to hide user info in the jsonwebtoken
-then we send it as a cookie
-  -it is required when updating the hotel; to check if user is admin or not
-  -it is also required for users after loggin in to perform some actions
-****in order to SET TOKENS IN OUR COOKIES, then we need to first install the cookie parser package,
-then use it as a middleware inside our main index.js fle
-   app.use(cookieParser())
