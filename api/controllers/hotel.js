@@ -1,6 +1,6 @@
 // we'll be writing our database query here
 import Hotel from "../models/Hotel.js"//importing schema
-import {createError} from "../utils/error.js"//importing error handler
+//import {createError} from "../utils/error.js"//importing error handler
 
 
 
@@ -24,7 +24,7 @@ export const getHotel = async (req,res,next)=>{
         const hotel = await Hotel.findById(req.params.id)
         res.status(200).json(hotel);
     } catch (err) {
-        next (err);
+        next (err);    
     }
 
  }
@@ -47,21 +47,23 @@ export const updateHotel = async(req, res) =>{
         const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id , { $set : req.body} , { new : true } )
         res.status(200).json(updatedHotel);
     }catch (err) {
-        res.status(500).json(err);
+        //res.status(500).json(err);
+        next(err)
     }
     
     }
     
 
 //DELETE
-export const deleteHotel = async (req , res) =>{
+export const deleteHotel = async (req , res,next) =>{
     try{
         await Hotel.findByIdAndDelete(
             req.params.id
         );
         res.status(200).json("Hotel has been deleted");
     } catch (err) {
-        res.status(500).json(err);
+       // res.status(500).json(err);
+       next(err)
     }
         
     }     

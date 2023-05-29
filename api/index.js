@@ -6,6 +6,8 @@ import usersRoute from "./routes/users.js"
 import hotelsRoute from "./routes/hotels.js"
 import roomsRoute from "./routes/rooms.js"
 const app = express() //init.. express as a function
+import cookieParser from "cookie-parser"
+
 dotenv.config()
 
 const connect = async () => {
@@ -14,7 +16,7 @@ const connect = async () => {
         await mongoose.connect(process.env.MONGODB);
         console.log("connected to mongoDB Motherfucker!")
       } catch (error) { 
-        handleError(error);
+       // handleError(error);
       }
 }
 
@@ -39,6 +41,10 @@ const connect = async () => {
 
 //middleware
 
+
+
+//setting up the cookie parser package as a middleware; ready for action
+app.use(cookieParser())
 //you cannot send json object directly to express, handle it this way:
 app.use(express.json())
 

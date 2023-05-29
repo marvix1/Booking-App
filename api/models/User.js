@@ -14,7 +14,7 @@ username : {
     unique : true
 },
 
-email : {//assets can be hotel, cabin, apartment
+email : {
     type : String,
     required : true,
     unique : true
@@ -33,7 +33,7 @@ password : {
 
 },
 
-{timestamp : true}
+{timestamps : true}//  getting errors
     
  )
 
