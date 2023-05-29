@@ -1,6 +1,6 @@
 import express from "express"
 import {updateUser, deleteUser, getUsers , getUser} from "../controllers/user.js"//importing hotel post request for hotel
-import { verifyToken } from "../utils/verifyToken.js"
+import { verifyToken , verifyUser , verifyAdmin} from "../utils/verifyToken.js"
 
 
 
@@ -10,8 +10,13 @@ router.get("/checkAuth" , verifyToken , (req,res,next)=>{
   res.send("hello user, you are logged in")
 })
 
-router.get("/checkuser/:id" , verifyToken , (req,res,next)=>{
+router.get("/checkuser/:id" , verifyUser , (req,res,next)=>{
     res.send("hello user, you are logged in and can delete your account")
+  })
+
+
+  router.get("/checkadmin/:id" , verifyAdmin , (req,res,next)=>{
+    res.send("hello admin, you are logged in and can delete all accounts")
   })
 
 //UPDATE
