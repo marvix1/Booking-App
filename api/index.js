@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js"
 import usersRoute from "./routes/users.js"
 import hotelsRoute from "./routes/hotels.js"
 import roomsRoute from "./routes/rooms.js"
+import cors from "cors"
 const app = express() //init.. express as a function
 import cookieParser from "cookie-parser"
 
@@ -41,8 +42,14 @@ const connect = async () => {
 
 //middleware
 
-
-
+//express-CORS middleware
+app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+   next();
+ });
+ 
+//using main CORS
+//app.use(cors)
 //setting up the cookie parser package as a middleware; ready for action
 app.use(cookieParser())
 //you cannot send json object directly to express, handle it this way:

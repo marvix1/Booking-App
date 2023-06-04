@@ -1,5 +1,5 @@
 import express from "express"
-import {createHotel ,updateHotel,deleteHotel, getHotels , getHotel} from "../controllers/hotel.js"//importing hotel post request for hotel
+import {createHotel , countByCity, countByType, updateHotel,deleteHotel, getHotels , getHotel} from "../controllers/hotel.js"//importing hotel post request for hotel
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -21,6 +21,9 @@ router.delete("/:id" , verifyAdmin , deleteHotel)
 
 //GET ALL
 router.get("/" ,  getHotels) 
+router.get("/countByCity" ,  countByCity) 
+router.get("/countByType" ,  countByType) 
+
 
 
 //GET HOTEL BY ID
