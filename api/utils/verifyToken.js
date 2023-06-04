@@ -30,7 +30,7 @@ admin status. If authorized, it passes control to the next middleware or route
  handler. Otherwise, it returns a 403 Forbidden error.*/
 export const verifyUser = (req,res,next) =>{
     //to verify our user, the user needs to be authtenticated first
-    verifyToken(req , res ,  ()=>{
+    verifyToken(req , res , next, ()=>{
         if(req.user.id === req.params.id || req.user.isAdmin){
             next()
         } else{
@@ -41,9 +41,12 @@ export const verifyUser = (req,res,next) =>{
 }
 
 
-/*  */
+/* the verifyAdmin middleware function first verifies the user's token using the 
+verifyToken middleware.  Then, it checks if the authenticated user has an isAdmin property set 
+to true, indicating that the user is an admin.  If the user is an admin, it passes control to 
+the next middleware or route handler. Otherwise, it returns a 403 Forbidden error.  */
 export const verifyAdmin = (req , res , next ) => {
-    verifyToken (req, res , () => {
+    verifyToken (req, res , next , () => {
         if (req.user.isAdmin) {
             next();
         } else {

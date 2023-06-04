@@ -42,7 +42,7 @@ export const getHotels = async (req,res,next) =>{
 }
 
 //UPDATE
-export const updateHotel = async(req, res) =>{
+export const updateHotel = async(req, res , next) =>{
     try{ 
         const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id , { $set : req.body} , { new : true } )
         res.status(200).json(updatedHotel);
